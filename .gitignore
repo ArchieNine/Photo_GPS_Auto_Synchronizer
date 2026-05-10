@@ -1,0 +1,23 @@
+# Python 暫存檔
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虛擬環境與免安裝 Python 核心 (非常重要，避免上傳幾百MB的環境檔)
+venv/
+env/
+python_portable/
+
+# cx_Freeze/PyInstaller 殘留的打包資料夾 (預防萬一)
+build/
+dist/
+*.spec
+
+# 專案自訂的忽略目錄
+old_script/
+app/
+
+# 程式自己產生的資料庫與暫存檔 (避免上傳你個人的照片足跡)
+data/
+*.json
+!config.json  # 驚嘆號代表「例外」，這個語系檔必須上傳
