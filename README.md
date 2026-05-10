@@ -52,11 +52,11 @@ python main.py --cli --dir "Y:\Photos" --tolerance 1800
 
 
 # ✨ 核心亮點
-# ⚡ 極速匹配：採用二分搜尋演算法，即使在數萬張照片中尋找匹配點也僅需數秒。
+⚡ 極速匹配：採用二分搜尋演算法，即使在數萬張照片中尋找匹配點也僅需數秒。
 
-# 🌐 多國語系支援：內建中英文切換，文字全部抽離至 config.json，易於擴充。
+🌐 多國語系支援：內建中英文切換，文字全部抽離至 config.json，易於擴充。
 
-# 🖼️ 互動式地圖預覽：
+🖼️ 互動式地圖預覽：
 
 採用 延遲載入 (Lazy Loading) 技術，地圖大頭針僅在點擊時讀取照片，處理 10 萬張照片也不卡頓。
 
@@ -70,9 +70,9 @@ Step 2 匹配：儲存匹配計畫，方便調整參數前對照。
 
 Step 3 寫入：記錄寫入進度，當機或重啟後可自動接續。
 
-# 🧹 安全清除 (Undo)：發現寫錯了？一鍵清除「僅限本次匹配」的照片 GPS，不傷及原始照片資料。
+🧹 安全清除 (Undo)：發現寫錯了？一鍵清除「僅限本次匹配」的照片 GPS，不傷及原始照片資料。
 
-# 🖥️ WebUI & CLI 雙模式：同時提供友善的 Gradio 網頁介面與強大的命令列批次處理功能。
+🖥️ WebUI & CLI 雙模式：同時提供友善的 Gradio 網頁介面與強大的命令列批次處理功能。
 
 # 📍 匹配方法說明
 來源一：同一時間段內手機拍的照片
@@ -121,18 +121,19 @@ Step 3 寫入：記錄寫入進度，當機或重啟後可自動接續。
 
 開發者 / 命令列 (CLI) 使用者：
 
-Bash
-# 準備環境
+```bash
+#準備環境
 pip install -r requirements.txt
 
-# 啟動網頁介面
+#啟動網頁介面
 python main.py
 
-# 基本匹配 (使用內部照片基準)
+#基本匹配 (使用內部照片基準)
 python main.py --cli --dir "Y:\Photos" --tolerance 1800
 
-# 使用 Google Timeline 匹配並自訂輸出目錄
+#使用 Google Timeline 匹配並自訂輸出目錄
 python main.py --cli --dir "Y:\Photos" --timeline "Y:\timeline.json" --outdir "./my_data"
 
-# 復原/洗掉寫入的 GPS 資訊
+#復原/洗掉寫入的 GPS 資訊
+
 python main.py --cli --dir "Y:\Photos" --clear# Photo_GPS_Auto_Synchronizer
