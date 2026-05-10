@@ -39,30 +39,30 @@ The program supports reading Google Maps Timeline data. Due to recent Google pri
 Simply download the project, ensure you have Python installed, and double-click `start.bat`. It will automatically set up the virtual environment, install dependencies, and launch the WebUI.
 
 **For Developers / CLI Users:**
-```bash
+
 pip install -r requirements.txt
 python main.py --cli --dir "Y:\Photos" --tolerance 1800
 
 
 
-🌍 大規模照片 GPS 自動補齊系統 (Photo GPS Auto-Synchronizer)
+# 🌍 大規模照片 GPS 自動補齊系統 (Photo GPS Auto-Synchronizer)
 這是一個專為處理巨量照片庫（如 Immich、Synology Photos、個人 NAS 備份）設計的自動化工具。
 當你使用無 GPS 功能的相機（如單眼、微單）拍照時，本程式能透過「同一時間段內手機拍的照片」或「Google 地圖時間軸紀錄」，
 自動為你的相機照片補上大致的 GPS 經緯度資訊。
 
 
-✨ 核心亮點
-⚡ 極速匹配：採用二分搜尋演算法，即使在數萬張照片中尋找匹配點也僅需數秒。
+# ✨ 核心亮點
+# ⚡ 極速匹配：採用二分搜尋演算法，即使在數萬張照片中尋找匹配點也僅需數秒。
 
-🌐 多國語系支援：內建中英文切換，文字全部抽離至 config.json，易於擴充。
+# 🌐 多國語系支援：內建中英文切換，文字全部抽離至 config.json，易於擴充。
 
-🖼️ 互動式地圖預覽：
+# 🖼️ 互動式地圖預覽：
 
 採用 延遲載入 (Lazy Loading) 技術，地圖大頭針僅在點擊時讀取照片，處理 10 萬張照片也不卡頓。
 
 網頁版地圖獨立保存，大小僅約 1MB，方便攜帶與展示。
 
-💾 完善的斷點續傳機制：
+# 💾 完善的斷點續傳機制：
 
 Step 1 掃描：快取圖庫狀態，避免重複讀取磁碟。
 
@@ -70,11 +70,11 @@ Step 2 匹配：儲存匹配計畫，方便調整參數前對照。
 
 Step 3 寫入：記錄寫入進度，當機或重啟後可自動接續。
 
-🧹 安全清除 (Undo)：發現寫錯了？一鍵清除「僅限本次匹配」的照片 GPS，不傷及原始照片資料。
+# 🧹 安全清除 (Undo)：發現寫錯了？一鍵清除「僅限本次匹配」的照片 GPS，不傷及原始照片資料。
 
-🖥️ WebUI & CLI 雙模式：同時提供友善的 Gradio 網頁介面與強大的命令列批次處理功能。
+# 🖥️ WebUI & CLI 雙模式：同時提供友善的 Gradio 網頁介面與強大的命令列批次處理功能。
 
-📍 匹配方法說明
+# 📍 匹配方法說明
 來源一：同一時間段內手機拍的照片
 只要將同一時段使用其他裝置（如手機等包含 GPS 的設備）拍攝的照片放在同一個資料夾內，程式就會自動讀取並將其標示為基準點，接著配對時間接近的相機照片，賦予其 GPS。
 
@@ -115,7 +115,7 @@ Step 3 寫入：記錄寫入進度，當機或重啟後可自動接續。
 
 💡 提示： 本程式會自動解析 JSON 檔案內的 semanticSegments 或原生經緯度節點，只要是標準的 Google 匯出格式皆可順利讀取。
 
-🛠️ 快速開始
+# 🛠️ 快速開始
 一般使用者 (Windows)：
 下載專案後，確認電腦已安裝 Python，直接點擊執行 start.bat 即可。腳本會自動建立虛擬環境、下載套件並啟動網頁介面。
 
