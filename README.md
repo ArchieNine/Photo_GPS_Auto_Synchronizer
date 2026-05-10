@@ -40,8 +40,59 @@ Simply download the project, ensure you have Python installed, and double-click 
 
 **For Developers / CLI Users:**
 
+```bash
 pip install -r requirements.txt
 python main.py --cli --dir "Y:\Photos" --tolerance 1800
+```
+
+## ⚙️ System Requirements
+* **Operating System**: Windows (Currently tested on Windows 10/11 only)
+* **Python**: 3.8 or higher
+* **RAM**: Minimum 2GB (8GB+ recommended for large photo libraries)
+* **Disk Space**: Depends on photo library size + ~500MB for dependencies
+* **Other**: Exiftool (included in requirements.txt)
+
+**Note**: *This project is currently only tested and verified on Windows. While the Python code may be compatible with macOS and Linux, the `.bat` startup scripts and file path handling are Windows-specific. Community contributions for cross-platform support are welcome.*
+
+## ❓ FAQ
+**Q: Will this damage my original photos?**
+A: No. The program reads EXIF data and writes GPS coordinates only. Original files are backed up, and you can use the `--clear` command to remove added GPS data without affecting original metadata.
+
+**Q: How accurate are the GPS coordinates?**
+A: Accuracy depends on the reference source. Smartphone GPS is typically within 5-20 meters. Google Timeline data varies but averages 20-100 meters. The program interpolates between reference points for time-matched photos.
+
+**Q: Can I use this with RAW files?**
+A: Yes! The program works with any format that stores EXIF data (JPG, PNG, RAW, etc.).
+
+**Q: What if I have thousands of photos?**
+A: The program uses binary search algorithms and lazy loading for the map. Performance is optimized for 100,000+ photos.
+
+**Q: Can I undo the GPS matching?**
+A: Yes. The `--clear` command removes GPS data from the current batch. Resumable progress tracking is saved at each step.
+
+## 🤝 Contributing
+Contributions are welcome! Areas of interest:
+* Cross-platform support (macOS/Linux)
+* Additional GPS source methods
+* Performance optimizations
+* Bug fixes and feature requests
+
+Please open an issue or submit a pull request on GitHub.
+
+## 📜 License
+This project is licensed under **GPL v3.0** - see [LICENSE](LICENSE) file for details.
+
+In summary, you are free to use, modify, and distribute this software, but you must:
+* Disclose the source code when distributing
+* Use the same GPL v3.0 license for derivative works
+* Include license and copyright notices
+
+## 📧 Support
+If you encounter issues:
+1. Check the FAQ above
+2. Review existing GitHub issues
+3. Provide detailed logs when reporting bugs (use `--log` flag for verbose output)
+4. For feature requests, describe your use case
 
 
 
@@ -116,24 +167,79 @@ Step 3 寫入：記錄寫入進度，當機或重啟後可自動接續。
 💡 提示： 本程式會自動解析 JSON 檔案內的 semanticSegments 或原生經緯度節點，只要是標準的 Google 匯出格式皆可順利讀取。
 
 # 🛠️ 快速開始
-一般使用者 (Windows)：
-下載專案後，確認電腦已安裝 Python，直接點擊執行 start.bat 即可。腳本會自動建立虛擬環境、下載套件並啟動網頁介面。
 
-開發者 / 命令列 (CLI) 使用者：
+**一般使用者 (Windows)：**
+下載專案後，確認電腦已安裝 Python，直接點擊執行 `start.bat` 即可。腳本會自動建立虛擬環境、下載套件並啟動網頁介面。
+
+**開發者 / 命令列 (CLI) 使用者：**
 
 ```bash
-#準備環境
+# 準備環境
 pip install -r requirements.txt
 
-#啟動網頁介面
+# 啟動網頁介面
 python main.py
 
-#基本匹配 (使用內部照片基準)
-python main.py --cli --dir "Y:\Photos" --tolerance 1800
+# 基本匹配 (使用內部照片基準)
+python main.py --cli --dir "Y:\\Photos" --tolerance 1800
 
-#使用 Google Timeline 匹配並自訂輸出目錄
-python main.py --cli --dir "Y:\Photos" --timeline "Y:\timeline.json" --outdir "./my_data"
+# 使用 Google Timeline 匹配並自訂輸出目錄
+python main.py --cli --dir "Y:\\Photos" --timeline "Y:\\timeline.json" --outdir "./my_data"
 
-#復原/洗掉寫入的 GPS 資訊
+# 復原/洗掉寫入的 GPS 資訊
+python main.py --cli --dir "Y:\\Photos" --clear
+```
 
-python main.py --cli --dir "Y:\Photos" --clear# Photo_GPS_Auto_Synchronizer
+## ⚙️ 系統需求
+
+* **作業系統**: Windows (目前僅在 Windows 10/11 上測試驗證)
+* **Python**: 3.8 或更新版本
+* **記憶體**: 最小 2GB (處理大量照片庫建議 8GB 以上)
+* **磁碟空間**: 取決於照片庫大小 + ~500MB 套件空間
+* **其他**: Exiftool (包含在 requirements.txt)
+
+**重要說明**：*本專案目前僅在 Windows 上測試與驗證。雖然 Python 程式碼可能與 macOS 和 Linux 相容，但 `.bat` 啟動腳本與檔案路徑處理為 Windows 專用。歡迎社群貢獻跨平台支援！*
+
+## ❓ 常見問題 (FAQ)
+
+**Q: 這個程式會損傷我的原始照片嗎？**
+A: 不會。程式只讀取 EXIF 資料並寫入 GPS 座標。你也可以使用 `--clear` 指令清除新增的 GPS 資訊，不影響原始中繼資料。建議第一次使用前先自行使用小批量照片備份後測試
+
+**Q: GPS 座標的精準度如何？**
+A: 精準度取決於參考資料來源。手機 GPS 通常誤差在 5-20 公尺內；Google 時間軸資料變異較大，平均 20-100 公尺。程式會在時間匹配的照片間進行內插計算。
+
+**Q: 可以用 RAW 檔案嗎？**
+A: 可以！程式相容任何儲存 EXIF 資料的格式（JPG、PNG、RAW 等）。
+
+**Q: 如果我有幾千張照片呢？**
+A: 程式採用二分搜尋演算法與延遲載入技術，最佳化處理 10 萬張以上的照片。
+
+**Q: 我可以復原 GPS 配對嗎？**
+A: 可以。`--clear` 指令會移除目前批次的 GPS 資訊。每個步驟都會記錄進度，支援斷點續傳。
+
+## 🤝 貢獻指南
+
+歡迎提出貢獻！感興趣的方向包括：
+* 跨平台支援 (macOS/Linux)
+* 額外的 GPS 來源方法
+* 效能最佳化
+* 臭蟲修正與功能要求
+
+請在 GitHub 上開啟 Issue 或提交 Pull Request。
+
+## 📜 授權條款
+
+本專案採用 **GPL v3.0 授權** - 詳見 [LICENSE](LICENSE) 檔案。
+
+簡述：你可以自由使用、修改與散佈本軟體，但必須：
+* 散佈時公開原始碼
+* 衍生作品採用相同的 GPL v3.0 授權
+* 包含授權與著作權聲明
+
+## 📧 技術支援
+
+遇到問題時：
+1. 查看上方常見問題
+2. 查閱既有的 GitHub Issue
+3. 回報臭蟲時提供詳細日誌 (使用 `--log` 旗標啟用詳細輸出)
+4. 功能要求時請說明使用情景
